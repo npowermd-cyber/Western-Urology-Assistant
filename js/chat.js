@@ -269,14 +269,13 @@ async function sendMessage() {
   scrollToBottom();
 
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch(CONFIG.PROXY_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'x-api-key': CONFIG.ANTHROPIC_API_KEY,
         'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
+             },
       body: JSON.stringify({
         model: CONFIG.MODEL,
         max_tokens: 1000,
