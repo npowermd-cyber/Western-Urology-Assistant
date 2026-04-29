@@ -1,5 +1,5 @@
 const CONFIG = {
-  ANTHROPIC_API_KEY: "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",
+  ANTHROPIC_API_KEY: "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",
   MODEL: "claude-sonnet-4-20250514",
   PHYSICIANS: {
     "dr-power": {
