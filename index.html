@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Western Urology Patient Assistant | Western University</title>
+  <meta name="description" content="AI-powered patient support for Western University Urology patients. Get answers about pre-operative and post-operative care, medications, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Emergency Banner -->
+  <div class="emergency-banner" id="emergencyBanner">
+    <span class="emergency-icon">🚨</span>
+    <strong>Medical Emergency?</strong> Call <a href="tel:911">911</a> immediately or go to your nearest Emergency Room.
+    <button class="banner-close" onclick="document.getElementById('emergencyBanner').style.display='none'">✕</button>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <div class="western-logo">
+          <svg viewBox="0 0 220 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+            <rect width="220" height="60" fill="transparent"/>
+            <!-- Western shield emblem simplified -->
+            <path d="M8 8 L8 44 L22 52 L36 44 L36 8 Z" fill="#4F2683"/>
+            <path d="M14 16 L22 40 L30 16" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M11 20 L14 16 M30 16 L33 20" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <text x="44" y="24" font-family="Georgia, serif" font-size="15" font-weight="700" fill="#4F2683">WESTERN</text>
+            <text x="44" y="40" font-family="Georgia, serif" font-size="10" fill="#4F2683" letter-spacing="1">UNIVERSITY</text>
+            <line x1="44" y1="44" x2="200" y2="44" stroke="#4F2683" stroke-width="0.5" opacity="0.3"/>
+            <text x="44" y="54" font-family="Georgia, serif" font-size="8.5" fill="#6B7280" letter-spacing="0.5">Department of Urology</text>
+          </svg>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="header-badge">
+          <span class="badge-dot"></span>
+          AI Assistant Online
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero / Welcome Section -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-grid"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Western Urology · Patient Support</div>
+      <h1 class="hero-title">Your Urology<br /><span class="gradient-text">Care Assistant</span></h1>
+      <p class="hero-subtitle">
+        Get trusted, evidence-based answers about your urological care — pre-operative preparation, post-operative recovery, medications, and when to seek urgent help.
+      </p>
+      <div class="hero-trust">
+        <div class="trust-item">
+          <span class="trust-icon">📋</span>
+          <span>Based on CUA Guidelines</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">🔒</span>
+          <span>No PHI Collected</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">🏥</span>
+          <span>Western University</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main App -->
+  <main class="app-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+      <!-- Doctor Selection -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-header">
+          <span class="sidebar-icon">👨‍⚕️</span>
+          <h3>Select Your Urologist</h3>
+        </div>
+        <p class="sidebar-hint">Choose your attending physician so your consultation summary can be sent to their office.</p>
+        <select id="doctorSelect" class="doctor-select">
+          <option value="">— Select your doctor —</option>
+          <option value="dr-power" data-email="npowermd@gmail.com" data-name="Dr. Nicholas Power">Dr. Nicholas Power</option>
+        </select>
+        <div class="selected-doctor-badge" id="selectedDoctorBadge" style="display:none;">
+          <span class="checkmark">✓</span>
+          <span id="selectedDoctorName"></span>
+        </div>
+      </div>
+
+      <!-- Contact Info (Optional) -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-header">
+          <span class="sidebar-icon">📧</span>
+          <h3>Request a Callback</h3>
+        </div>
+        <p class="sidebar-hint">Optional — leave your email if you'd like the doctor's office to contact you.</p>
+        <input
+          type="email"
+          id="patientEmail"
+          class="email-input"
+          placeholder="your@email.com"
+          autocomplete="off"
+        />
+        <p class="privacy-note">🔒 No personal health information is stored or shared. Email is only used to alert the office you'd like contact.</p>
+      </div>
+
+      <!-- Quick Topics -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-header">
+          <span class="sidebar-icon">⚡</span>
+          <h3>Quick Questions</h3>
+        </div>
+        <div class="quick-topics">
+          <button class="quick-btn" onclick="askQuick('What should I do to prepare for my urology surgery?')">Pre-op preparation</button>
+          <button class="quick-btn" onclick="askQuick('What are normal symptoms after urological surgery?')">Post-op recovery</button>
+          <button class="quick-btn" onclick="askQuick('When should I go to the emergency room after urology surgery?')">Emergency signs</button>
+          <button class="quick-btn" onclick="askQuick('I have blood in my urine - what should I do?')">Blood in urine</button>
+          <button class="quick-btn" onclick="askQuick('What medications are commonly used after urology surgery?')">Medications</button>
+          <button class="quick-btn" onclick="askQuick('I have difficulty urinating after my procedure - what should I do?')">Urination problems</button>
+          <button class="quick-btn" onclick="askQuick('What are signs of infection I should watch for?')">Infection signs</button>
+          <button class="quick-btn" onclick="askQuick('How do I care for my catheter at home?')">Catheter care</button>
+        </div>
+      </div>
+
+      <!-- Emergency Quick Access -->
+      <div class="sidebar-card emergency-card">
+        <div class="sidebar-card-header">
+          <span class="sidebar-icon">🚨</span>
+          <h3>When to go to Emergency</h3>
+        </div>
+        <ul class="emergency-list">
+          <li>Severe uncontrolled bleeding</li>
+          <li>Inability to urinate for &gt;6–8 hours</li>
+          <li>High fever (&gt;38.5°C / 101.3°F)</li>
+          <li>Chest pain or difficulty breathing</li>
+          <li>Signs of severe infection/sepsis</li>
+          <li>Severe uncontrolled pain</li>
+        </ul>
+        <a href="tel:911" class="emergency-btn">Call 911 Now</a>
+      </div>
+
+    </aside>
+
+    <!-- Chat Area -->
+    <section class="chat-section">
+      <div class="chat-header">
+        <div class="chat-header-left">
+          <div class="ai-avatar">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="20" fill="#4F2683"/>
+              <path d="M12 26 C12 20 28 20 28 26" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <circle cx="16" cy="17" r="2" fill="white"/>
+              <circle cx="24" cy="17" r="2" fill="white"/>
+              <path d="M16 12 L20 8 L24 12" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="chat-agent-name">Western Urology Assistant</div>
+            <div class="chat-agent-status"><span class="status-dot"></span>Powered by Claude AI · CUA Guidelines</div>
+          </div>
+        </div>
+        <button class="clear-chat-btn" onclick="clearChat()" title="Clear conversation">
+          <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M4 4l12 12M4 16L16 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          New Chat
+        </button>
+      </div>
+
+      <!-- Messages -->
+      <div class="chat-messages" id="chatMessages">
+        <!-- Welcome message injected by JS -->
+      </div>
+
+      <!-- Typing indicator -->
+      <div class="typing-indicator" id="typingIndicator" style="display:none;">
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <span>Assistant is thinking…</span>
+      </div>
+
+      <!-- Send Summary Button (appears after conversation) -->
+      <div class="send-summary-bar" id="sendSummaryBar" style="display:none;">
+        <div class="summary-bar-inner">
+          <span class="summary-bar-text">Would you like to send a summary of this consultation to your doctor's office?</span>
+          <button class="send-summary-btn" onclick="sendSummaryEmail()">
+            <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M2 4l8 7 8-7M2 4h16v13H2V4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Send to Doctor's Office
+          </button>
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="chat-input-area">
+        <div class="input-wrapper">
+          <textarea
+            id="chatInput"
+            class="chat-textarea"
+            placeholder="Describe your question or concern…"
+            rows="1"
+            onkeydown="handleKeyDown(event)"
+            oninput="autoResize(this)"
+          ></textarea>
+          <button class="send-btn" id="sendBtn" onclick="sendMessage()" title="Send message">
+            <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+              <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="input-disclaimer">
+          This assistant provides general information only. Always follow your doctor's specific instructions.
+          For emergencies, call 911 or go to the nearest Emergency Room.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Email Sent Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <div class="footer-logo">Western University · Department of Urology</div>
+        <p class="footer-disclaimer">
+          This AI assistant is for informational purposes only and does not constitute medical advice.
+          Information is based on Canadian Urological Association (CUA) patient brochures and guidelines.
+          Always consult your physician for personal medical decisions.
+        </p>
+      </div>
+      <div class="footer-right">
+        <div class="footer-links">
+          <a href="https://www.schulich.uwo.ca/surgery/divisions/urology.html" target="_blank" rel="noopener">Western Urology</a>
+          <a href="https://www.cua.org/patient-information-and-brochures" target="_blank" rel="noopener">CUA Resources</a>
+          <a href="https://www.lhsc.on.ca" target="_blank" rel="noopener">LHSC</a>
+        </div>
+        <div class="footer-emergency">
+          <strong>Emergency:</strong> Call <a href="tel:911">911</a> or visit your nearest ER
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/chat.js"></script>
+</body>
+</html>
