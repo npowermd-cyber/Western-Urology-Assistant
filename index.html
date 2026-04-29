@@ -256,7 +256,8 @@
 
  <script>
 const CONFIG = {
-  ANTHROPIC_API_KEY: localStorage.getItem('wua_key') || '',
+  ANTHROPIC_API_KEY: 'cloudflare',
+  PROXY_URL: 'https://western-urology-proxy.npowermd.workers.dev',
   MODEL: "claude-sonnet-4-20250514",
   PHYSICIANS: {
     "dr-power": {
