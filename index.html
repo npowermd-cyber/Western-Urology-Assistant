@@ -254,7 +254,23 @@
     </div>
   </footer>
 
-  <script src="js/config.js"></script>
-  <script src="js/chat.js"></script>
+ <script>
+const CONFIG = {
+  ANTHROPIC_API_KEY: "sk-ant-api03-cZl0qSlwJAEmDGz0g6Z2mBiEXzwmoj4JxCAi4CcONmkFnxvUK1k9JErfhSrwzQWzJNuvJH3gMoh6fHnb05-GIQ-SFr5GgAA",
+  MODEL: "claude-sonnet-4-20250514",
+  PHYSICIANS: {
+    "dr-power": {
+      name: "Dr. Nicholas Power",
+      email: "npowermd@gmail.com",
+      specialty: "Urology"
+    }
+  },
+  EMAIL_SERVICE: "mailto",
+  EMAILJS_SERVICE_ID: "",
+  EMAILJS_TEMPLATE_ID: "",
+  EMAILJS_PUBLIC_KEY: "",
+};
+</script>
+<script src="js/chat.js"></script>
 </body>
 </html>
